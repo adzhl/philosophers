@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/24 16:08:48 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/24 20:55:57 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	ft_isdigit(char *str)
 {
 	if (!str || !*str)
 		return (0);
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-		str++;
 	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)

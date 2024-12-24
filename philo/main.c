@@ -6,15 +6,15 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:56:11 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/24 14:15:51 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/24 16:09:12 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    if (check_args(argc, argv))
-        return (1);
-    return (0);
+	if (check_args(argc, argv))
+		return (1);
+	return (0);
 }

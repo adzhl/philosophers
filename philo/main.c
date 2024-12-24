@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 20:05:59 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/23 20:06:41 by abinti-a         ###   ########.fr       */
+/*   Created: 2024/12/24 13:56:11 by abinti-a          #+#    #+#             */
+/*   Updated: 2024/12/24 14:15:51 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int main(int argc, char **argv)
 {
+    if (check_args(argc, argv))
+        return (1);
     return (0);
 }

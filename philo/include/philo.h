@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 13:43:22 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 18:00:22 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,23 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					must_eat_count;
+	long				start_time;
 	int					stop_simulation;
 	pthread_mutex_t		*forks;
+	pthread_mutex_t		print_lock;
 	t_philo				*philo;
 }						t_data;
 
 typedef struct s_philo
 {
+	pthread_t			thread;
 	int					id;
 	long				last_meal_time;
 	int					meals_eaten;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	t_data				*data;
+	pthread_mutex_t		eat_mutex;
 }						t_philo;
 
 // check args
@@ -79,11 +83,30 @@ int						init_data(t_data *data, int argc, char **argv);
 int						init_forks(t_data *data);
 int						init_philo(t_data *data);
 
+// thread creation
+
+void					create_threads(t_data *data);
+
+// routine
+
+void					philo_routine(t_philo *philo);
+void					monitor_routine(t_data *data);
+void					eat(t_philo *philo);
+void					sleep(t_philo *philo);
+void					think(t_philo *philo);
+
+// forks
+
+void					take_fork(t_philo *philo);
+void					put_fork(t_philo *philo);
+
 // utils
 
 int						ft_isdigit(char *str);
 long					ft_atol(char *str);
 long					get_timestamp(void);
+void					log_activity(char *message, t_data *data);
+void					usleep_time(int sleep_duration);
 
 void					print_error(char *message);
 

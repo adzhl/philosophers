@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:56:11 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 11:21:51 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:47:41 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (check_args(argc, argv))
-	{
-		printf("1. Error here\n");
 		return (1);
-	}
 	if (init_data(&data, argc, argv))
-	{
-		printf("2. Error here\n");
 		return (1);
-	}
-	// if (check_initialization(&data))
-	// {
-	// 	printf("3. Error here\n");
-	// 	return (1);
-	// }
+	create_threads(&data);
 	return (0);
 }

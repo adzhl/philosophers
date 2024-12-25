@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 11:06:32 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:17:24 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = ft_atol(argv[5]);
 	else
 		data->must_eat_count = -1;
+	data->start_time = get_timestamp();
 	data->stop_simulation = 0;
 	if (!init_forks(data) || !init_philo(data))
 		return (1);
+	pthread_mutex_init(&data->print_lock, NULL);
 	return (0);
 }
 
@@ -40,12 +42,11 @@ int	init_forks(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->no_of_philo);
 	if (!data->forks)
 		return (0);
-	i = 0;
-	while (i < data->no_of_philo)
+	i = -1;
+	while (++i < data->no_of_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			return (0);
-		i++;
 	}
 	return (1);
 }
@@ -58,8 +59,8 @@ int	init_philo(t_data *data)
 	data->philo = malloc(sizeof(t_philo) * data->no_of_philo);
 	if (!data->philo)
 		return (0);
-	i = 0;
-	while (i < data->no_of_philo)
+	i = -1;
+	while (++i < data->no_of_philo)
 	{
 		assign_philo = &data->philo[i];
 		assign_philo->id = i;
@@ -68,7 +69,7 @@ int	init_philo(t_data *data)
 		assign_philo->left_fork = &data->forks[i];
 		assign_philo->right_fork = &data->forks[(i + 1) % data->no_of_philo];
 		assign_philo->data = data;
-		i++;
+		pthread_mutex_init(&assign_philo->eat_mutex, NULL);
 	}
 	return (1);
 }

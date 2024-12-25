@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 10:32:04 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:55:51 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ long	ft_atol(char *str)
 }
 
 /**
- * @note tv_sec contains whole seconds while 
+ * @note tv_sec contains whole seconds while
  * tv_usec tell the fraction of the second
  */
 long	get_timestamp(void)
@@ -61,4 +61,32 @@ long	get_timestamp(void)
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+/**
+ * @brief Activity logging is a shared resource.
+ * Therefore, it must be locked before using and unlocked after using
+ */
+void	log_activity(char *message, t_data *data)
+{
+	long	timestamp;
+
+	pthread_mutex_lock(&data->print_lock);
+	timestamp = get_timestamp() - data->start_time;
+	printf("[%ld] Philosopher %d %s\n\n", timestamp, data->philo->id, message);
+	pthread_mutex_unlock(&data->print_lock);
+}
+
+/**
+ * @brief usleep(500) is used to reduce CPU usage.
+ * The function will check every 0.5 milliseconds to see 
+ * if the required duration is reached.
+ */
+void	usleep_time(int sleep_duration)
+{
+	long	start;
+
+	start = get_timestamp();
+	while (get_timestamp() - start < sleep_duration)
+		usleep(500);
 }

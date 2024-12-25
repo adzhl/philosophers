@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 13:57:00 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 15:52:56 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	valid_arg_count(int argc)
 	return (1);
 }
 
+/**
+ * 1. Argument must be a digit
+ * 2. Argument must be an integer
+ * 3. Argument value must be valid (see valid_arg_value)
+ */
 int	arg_is_valid(char **argv)
 {
 	int		i;
@@ -61,6 +66,10 @@ int	arg_is_valid(char **argv)
 	return (1);
 }
 
+/**
+ * 1. no_of_philo (i == 1) must be at least 1
+ * 2. other values must not be 0 or negative value
+ */
 int	valid_arg_value(int num, int i)
 {
 	if (i == 1 && num < 1)

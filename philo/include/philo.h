@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/24 18:09:01 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 10:53:38 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,18 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat_count;
+	int				stop_simulation;
+	pthread_mutex_t	*forks;
+	struct s_philo	*philo;
 }					t_data;
 
 typedef struct s_philo
 {
 	int				id;
 	long			last_meal_time;
-	int				no_meals_eaten;
+	int				meals_eaten;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	int				stop_simulation;
 	t_data			*data;
 }					t_philo;
 
@@ -69,10 +71,17 @@ int					arg_is_valid(char **argv);
 int					valid_arg_value(int num, int i);
 void				arg_error(int i);
 
+// initialize data
+
+int					init_data(t_data *data, int argc, char **argv);
+int					init_forks(t_data *data);
+int					init_philo(t_data *data);
+
 // utils
 
 int					ft_isdigit(char *str);
 long				ft_atol(char *str);
+long				get_timestamp(void);
 
 void				print_error(char *message);
 

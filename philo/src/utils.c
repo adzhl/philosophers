@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/24 20:55:57 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 10:32:04 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ long	ft_atol(char *str)
 		str++;
 	}
 	return (result * sign);
+}
+
+/**
+ * @note tv_sec contains whole seconds while 
+ * tv_usec tell the fraction of the second
+ */
+long	get_timestamp(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

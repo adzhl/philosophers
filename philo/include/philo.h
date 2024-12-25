@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 10:53:38 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/25 13:43:22 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,48 +41,50 @@ Follow this format: ./philo no_of_philo time_to_die time_to_eat time_to_sleep \
 integer\n"
 # define PHILO_NUM "Error: There must be at least one philosopher\n"
 
+typedef struct s_philo	t_philo;
+
 typedef struct s_data
 {
-	int				no_of_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				must_eat_count;
-	int				stop_simulation;
-	pthread_mutex_t	*forks;
-	struct s_philo	*philo;
-}					t_data;
+	int					no_of_philo;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					must_eat_count;
+	int					stop_simulation;
+	pthread_mutex_t		*forks;
+	t_philo				*philo;
+}						t_data;
 
 typedef struct s_philo
 {
-	int				id;
-	long			last_meal_time;
-	int				meals_eaten;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	t_data			*data;
-}					t_philo;
+	int					id;
+	long				last_meal_time;
+	int					meals_eaten;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
+	t_data				*data;
+}						t_philo;
 
 // check args
 
-int					check_args(int argc, char **argv);
-int					valid_arg_count(int argc);
-int					arg_is_valid(char **argv);
-int					valid_arg_value(int num, int i);
-void				arg_error(int i);
+int						check_args(int argc, char **argv);
+int						valid_arg_count(int argc);
+int						arg_is_valid(char **argv);
+int						valid_arg_value(int num, int i);
+void					arg_error(int i);
 
 // initialize data
 
-int					init_data(t_data *data, int argc, char **argv);
-int					init_forks(t_data *data);
-int					init_philo(t_data *data);
+int						init_data(t_data *data, int argc, char **argv);
+int						init_forks(t_data *data);
+int						init_philo(t_data *data);
 
 // utils
 
-int					ft_isdigit(char *str);
-long				ft_atol(char *str);
-long				get_timestamp(void);
+int						ft_isdigit(char *str);
+long					ft_atol(char *str);
+long					get_timestamp(void);
 
-void				print_error(char *message);
+void					print_error(char *message);
 
 #endif

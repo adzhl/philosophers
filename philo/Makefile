@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 MAIN = main.c
 SRCS = \
-$(addprefix src/, error.c valid_arg.c utils.c init.c) 
+$(addprefix src/, error.c check_args.c utils.c init.c) 
 
 OBJ_DIR = obj
 OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)

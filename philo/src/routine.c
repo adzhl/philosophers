@@ -6,20 +6,30 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 17:59:45 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 08:53:12 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_routine(t_philo *philo)
+/**
+ * @brief (void *arg) is passed as the parameter and typecasted in the
+ * function because pthread_create expects the prototype of a routine
+ * function to be void *(*start_routine)(void*);
+ * @return NULL because thread functions must return a void *
+ */
+void	*philo_routine(void *arg)
 {
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
 	while (!philo->data->stop_simulation)
 	{
-		eat(philo);
-		sleep(philo);
-		think(philo);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
 	}
+	return (NULL);
 }
 
 /**
@@ -32,7 +42,7 @@ void	philo_routine(t_philo *philo)
  * 7. Wait until reach assigned time to eat
  * 8. Unlock forks
  */
-void	eat(t_philo *philo)
+void	eating(t_philo *philo)
 {
 	take_fork(philo);
 	pthread_mutex_lock(&philo->eat_mutex);
@@ -44,13 +54,13 @@ void	eat(t_philo *philo)
 	put_fork(philo);
 }
 
-void	sleep(t_philo *philo)
+void	sleeping(t_philo *philo)
 {
 	log_activity("is sleeping", philo->data);
 	usleep_time(philo->data->time_to_sleep);
 }
 
-void	think(t_philo *philo)
+void	thinking(t_philo *philo)
 {
 	log_activity("is thinking", philo->data);
 }

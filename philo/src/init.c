@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 17:17:24 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 08:10:25 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (!init_forks(data) || !init_philo(data))
 		return (1);
 	pthread_mutex_init(&data->print_lock, NULL);
+	pthread_mutex_init(&data->stop_lock, NULL);
 	return (0);
 }
 
@@ -70,6 +71,7 @@ int	init_philo(t_data *data)
 		assign_philo->right_fork = &data->forks[(i + 1) % data->no_of_philo];
 		assign_philo->data = data;
 		pthread_mutex_init(&assign_philo->eat_mutex, NULL);
+		pthread_mutex_init(&assign_philo->meal_count_mutex, NULL);
 	}
 	return (1);
 }

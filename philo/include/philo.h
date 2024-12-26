@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 18:00:22 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 08:44:31 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 // For INT_MAX and INT_MIN
 # include <limits.h>
 
+# define MAX_PHILO 200
 # define ARG_NUM \
 	"Error: Invalid number of arguments\n\
 Follow this format: ./philo no_of_philo time_to_die time_to_eat time_to_sleep \
@@ -54,6 +55,7 @@ typedef struct s_data
 	int					stop_simulation;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print_lock;
+	pthread_mutex_t		stop_lock;
 	t_philo				*philo;
 }						t_data;
 
@@ -67,6 +69,7 @@ typedef struct s_philo
 	pthread_mutex_t		*right_fork;
 	t_data				*data;
 	pthread_mutex_t		eat_mutex;
+	pthread_mutex_t		meal_count_mutex;
 }						t_philo;
 
 // check args
@@ -89,11 +92,18 @@ void					create_threads(t_data *data);
 
 // routine
 
-void					philo_routine(t_philo *philo);
-void					monitor_routine(t_data *data);
-void					eat(t_philo *philo);
-void					sleep(t_philo *philo);
-void					think(t_philo *philo);
+void					*philo_routine(void *arg);
+void					eating(t_philo *philo);
+void					sleeping(t_philo *philo);
+void					thinking(t_philo *philo);
+
+// monitoring
+
+void					*monitor_routine(void *arg);
+int						philo_death(t_data *data, int i);
+int						eaten_enough(t_data *data);
+void					stop_simulation(t_data *data);
+void					meal_count_reached(t_data *data);
 
 // forks
 

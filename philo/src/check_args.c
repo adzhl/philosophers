@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 15:52:56 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 08:26:40 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	arg_is_valid(char **argv)
  */
 int	valid_arg_value(int num, int i)
 {
-	if (i == 1 && num < 1)
+	if (i == 1 && (num < 1 || num > MAX_PHILO))
 	{
 		print_error(PHILO_NUM);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 16:03:32 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:32:34 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,21 @@ void	create_threads(t_data *data)
 	while (++i < data->no_of_philo)
 		pthread_join(data->philo[i].thread, NULL);
 	pthread_join(monitor_thread, NULL);
+}
+
+void	cleanup(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->no_of_philo)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data->philo[i].eat_mutex);
+		pthread_mutex_destroy(&data->philo[i].meal_count_mutex);
+	}
+	pthread_mutex_destroy(&data->print_lock);
+	pthread_mutex_destroy(&data->stop_lock);
+	free(data->forks);
+	free(data->philo);
 }

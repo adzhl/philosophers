@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:17:25 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:33:08 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ void					meal_count_reached(t_data *data);
 
 void					take_fork(t_philo *philo);
 void					put_fork(t_philo *philo);
+
+// cleanup
+
+void					cleanup(t_data *data);
 
 // utils
 

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 13:19:11 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:28:57 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	*philo_routine(void *arg)
  */
 void	eating(t_philo *philo)
 {
-	if (end_simulation(philo->data))
-		return;
+	// if (end_simulation(philo->data))
+	// 	return;
 	if (philo->data->no_of_philo == 1)
 	{
 		usleep_time(philo->data->time_to_die);
@@ -65,15 +65,15 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	if (end_simulation(philo->data))
-		return;
+	// if (end_simulation(philo->data))
+	// 	return;
 	log_activity("is sleeping", philo);
 	usleep_time(philo->data->time_to_sleep);
 }
 
 void	thinking(t_philo *philo)
 {
-	if (end_simulation(philo->data))
-		return;
+	// if (end_simulation(philo->data))
+	// 	return;
 	log_activity("is thinking", philo);
 }

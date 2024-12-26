@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 10:58:23 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:29:45 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (!end_simulation(philo->data))
+	while (1)
 	{
+		if (end_simulation(philo->data))
+			break;
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 11:09:15 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:46:12 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	*monitor_routine(void *arg)
 
 	data = (t_data *)arg;
 	i = -1;
-	while (!end_simulation(data))
+	while (1)
 	{
+        if (end_simulation(data))
+            break;
 		while (++i < data->no_of_philo)
 		{
 			if (philo_death(data, i))
@@ -60,10 +62,10 @@ int	philo_death(t_data *data, int i)
 	if (time_since_eaten >= data->time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].eat_mutex);
-		log_activity("died", data->philo);
+		log_activity("died", &data->philo[i]);
 		return (1);
 	}
-	pthread_mutex_unlock(&data->philo[i].eat_mutex);
+    pthread_mutex_unlock(&data->philo[i].eat_mutex);
 	return (0);
 }
 

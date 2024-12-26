@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 12:46:12 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:58:36 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	philo_death(t_data *data, int i)
 	pthread_mutex_lock(&data->philo[i].eat_mutex);
 	current_time = get_timestamp();
 	time_since_eaten = current_time - data->philo[i].last_meal_time;
+    printf("time_since_eaten %ld\n", time_since_eaten);
+    printf("time_to_die %d\n", data->time_to_die);
 	if (time_since_eaten >= data->time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].eat_mutex);

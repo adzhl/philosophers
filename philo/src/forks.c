@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 17:59:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 10:05:33 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:52:39 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	take_fork(t_philo *philo)
 {
+	if (philo->data->no_of_philo == 1)
+	{
+		usleep_time(philo->data->time_to_die);
+		return ;
+	}
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -43,3 +48,4 @@ void	put_fork(t_philo *philo)
 		pthread_mutex_unlock(philo->left_fork);
 	}
 }
+

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 13:05:39 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:49:24 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ void	*monitor_routine(void *arg)
 			if (philo_death(data, i))
 			{
 				stop_simulation(data);
-                end_simulation(data);
 				return (NULL);
 			}
 		}
         if (eaten_enough(data))
         {
             stop_simulation(data);
-            end_simulation(data);
 			return (NULL);
         }
 	}
@@ -59,8 +57,6 @@ int	philo_death(t_data *data, int i)
 	pthread_mutex_lock(&data->philo[i].eat_mutex);
 	current_time = get_timestamp();
 	time_since_eaten = current_time - data->philo[i].last_meal_time;
-    // printf("time_since_eaten %ld\n", time_since_eaten);
-    // printf("time_to_die %d\n", data->time_to_die);
 	if (time_since_eaten >= data->time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].eat_mutex);
@@ -93,7 +89,6 @@ int	eaten_enough(t_data *data)
 	}
 	if (not_hungry == data->no_of_philo)
 	{
-		//meal_count_reached(data);
         end_simulation(data);
 		return (1);
 	}
@@ -105,11 +100,4 @@ void	stop_simulation(t_data *data)
 	pthread_mutex_lock(&data->stop_lock);
 	data->stop_simulation = 1;
 	pthread_mutex_unlock(&data->stop_lock);
-}
-
-void	meal_count_reached(t_data *data)
-{
-	pthread_mutex_lock(&data->print_lock);
-	printf("All philosophers have eaten enough. Ending simulation.\n");
-	pthread_mutex_unlock(&data->print_lock);
 }

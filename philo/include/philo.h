@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 10:06:23 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:40:35 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void					*monitor_routine(void *arg);
 int						philo_death(t_data *data, int i);
 int						eaten_enough(t_data *data);
 void					stop_simulation(t_data *data);
-void					meal_count_reached(t_data *data);
 
 // forks
 

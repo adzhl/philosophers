@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 08:44:31 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:17:25 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <limits.h>
 
 # define MAX_PHILO 200
+# define MIN_VALUE 60
 # define ARG_NUM \
 	"Error: Invalid number of arguments\n\
 Follow this format: ./philo no_of_philo time_to_die time_to_eat time_to_sleep \
@@ -41,6 +42,11 @@ Follow this format: ./philo no_of_philo time_to_die time_to_eat time_to_sleep \
 	"Error: no_of_times_each_philo_must_eat must be a positive \
 integer\n"
 # define PHILO_NUM "Error: There must be at least one philosopher\n"
+# define ERR_MAX_PHILO "Error: No of philosophers cannot exceed 200\n"
+# define ERR_2 "Error: time_to_die cannot be lower than 60\n"
+# define ERR_3 "Error: time_to_eat cannot be lower than 60\n"
+# define ERR_4 "Error: time_to_sleep cannot be lower than 60\n"
+# define ERR_5 "Error: no_of_times_each_philo_must_eat must be at least 1\n"
 
 typedef struct s_philo	t_philo;
 

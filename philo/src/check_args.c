@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 08:26:40 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:17:52 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	check_args(int argc, char **argv)
 		return (1);
 	if (!arg_is_valid(argv))
 		return (1);
+	printf("Here");
 	return (0);
 }
 
@@ -67,19 +68,33 @@ int	arg_is_valid(char **argv)
 }
 
 /**
- * 1. no_of_philo (i == 1) must be at least 1
- * 2. other values must not be 0 or negative value
+ * 1. no_of_philo must be at least 1 and not more than MAX_PHILO
+ * 2. time_to_die, time_to_eat and time_to_sleep must not be lower than MIN_VALUE
+ * 3. no_of_times_each_philo_must_eat must be at least 1
  */
 int	valid_arg_value(int num, int i)
 {
 	if (i == 1 && (num < 1 || num > MAX_PHILO))
 	{
-		print_error(PHILO_NUM);
+		if (num < 1)
+			print_error(PHILO_NUM);
+		else if (num > MAX_PHILO)
+			print_error(ERR_MAX_PHILO);
 		return (0);
 	}
-	else if (i != 1 && num <= 0)
+	else if (i == 5 && num < 1)
 	{
-		arg_error(i);
+		print_error(ERR_5);
+		return (0);
+	}
+	else if (i != 1 && i != 5 &&  num < MIN_VALUE)
+	{
+		if (i == 2)
+			print_error(ERR_2);
+		else if (i == 3)
+			print_error(ERR_3);
+		else if (i == 4)
+			print_error(ERR_4);
 		return (0);
 	}
 	return (1);

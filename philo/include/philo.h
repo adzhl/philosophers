@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 18:16:47 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 19:21:45 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 // For usleep (sleeping) and write
 # include <unistd.h>
-// For memset (initializing memory)
-# include <string.h>
 // For gettimeofday (timestamp in milliseconds)
 # include <sys/time.h>
 // For pthread_create, pthread_join, mutexes, etc.

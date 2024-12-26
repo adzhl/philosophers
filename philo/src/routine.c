@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:47:30 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:58:23 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	eating(t_philo *philo)
 {
 	take_fork(philo);
 	pthread_mutex_lock(&philo->eat_mutex);
-	log_activity("is eating", philo->data);
+	log_activity("is eating", philo);
 	philo->last_meal_time = get_timestamp();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->eat_mutex);
@@ -56,11 +56,11 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	log_activity("is sleeping", philo->data);
+	log_activity("is sleeping", philo);
 	usleep_time(philo->data->time_to_sleep);
 }
 
 void	thinking(t_philo *philo)
 {
-	log_activity("is thinking", philo->data);
+	log_activity("is thinking", philo);
 }

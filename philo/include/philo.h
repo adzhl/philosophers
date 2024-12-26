@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:45:15 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:06:23 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void					cleanup(t_data *data);
 int						ft_isdigit(char *str);
 long					ft_atol(char *str);
 long					get_timestamp(void);
-void					log_activity(char *message, t_data *data);
+void					log_activity(char *message, t_philo *philo);
 void					usleep_time(int sleep_duration);
 int						end_simulation(t_data *data);
 

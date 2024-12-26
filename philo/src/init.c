@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 08:10:25 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:25:30 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	init_data(t_data *data, int argc, char **argv)
 	return (0);
 }
 
+/**
+ * @brief initialize forks according to no_of_philo
+ */
 int	init_forks(t_data *data)
 {
 	int	i;

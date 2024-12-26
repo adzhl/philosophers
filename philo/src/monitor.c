@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 08:53:01 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 11:09:15 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,23 @@ void	*monitor_routine(void *arg)
 
 	data = (t_data *)arg;
 	i = -1;
-	while (1)
+	while (!end_simulation(data))
 	{
 		while (++i < data->no_of_philo)
 		{
-			if (philo_death(data, i) || eaten_enough(data))
+			if (philo_death(data, i))
 			{
 				stop_simulation(data);
+                end_simulation(data);
 				return (NULL);
 			}
 		}
+        if (eaten_enough(data))
+        {
+            stop_simulation(data);
+            end_simulation(data);
+			return (NULL);
+        }
 	}
 	return (NULL);
 }
@@ -53,7 +60,7 @@ int	philo_death(t_data *data, int i)
 	if (time_since_eaten >= data->time_to_die)
 	{
 		pthread_mutex_unlock(&data->philo[i].eat_mutex);
-		log_activity("died", data);
+		log_activity("died", data->philo);
 		return (1);
 	}
 	pthread_mutex_unlock(&data->philo[i].eat_mutex);
@@ -67,23 +74,23 @@ int	philo_death(t_data *data, int i)
 int	eaten_enough(t_data *data)
 {
 	int	i;
-	int	hungry;
+	int	not_hungry;
 
-	i = -1;
-	hungry = 1;
-	pthread_mutex_lock(&data->philo[i].meal_count_mutex);
+    if (data->must_eat_count == -1)
+        return (0);
+    i = -1;
+	not_hungry = 0;
 	while (++i < data->no_of_philo)
 	{
-		if (data->philo[i].meals_eaten < data->must_eat_count)
-		{
-			hungry = 0;
-			break ;
-		}
+        pthread_mutex_lock(&data->philo[i].meal_count_mutex);
+		if (data->philo[i].meals_eaten >= data->must_eat_count)
+			not_hungry++;
+        pthread_mutex_unlock(&data->philo[i].meal_count_mutex);
 	}
-	pthread_mutex_unlock(&data->philo[i].meal_count_mutex);
-	if (!hungry)
+	if (not_hungry == data->no_of_philo)
 	{
-		meal_count_reached(data);
+		//meal_count_reached(data);
+        end_simulation(data);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:44:53 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:35:44 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,19 @@ long	get_timestamp(void)
  * @brief Activity logging is a shared resource.
  * Therefore, it must be locked before using and unlocked after using
  */
-void	log_activity(char *message, t_data *data)
+void	log_activity(char *message, t_philo *philo)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(&data->print_lock);
-	timestamp = get_timestamp() - data->start_time;
-	printf("[%ld] Philosopher %d %s\n\n", timestamp, data->philo->id, message);
-	pthread_mutex_unlock(&data->print_lock);
+	pthread_mutex_lock(&philo->data->print_lock);
+	timestamp = get_timestamp() - philo->data->start_time;
+	printf("%ld %d %s\n\n", timestamp, philo->id, message);
+	pthread_mutex_unlock(&philo->data->print_lock);
 }
 
 /**
  * @brief usleep(500) is used to reduce CPU usage.
- * The function will check every 0.5 milliseconds to see 
+ * The function will check every 0.5 milliseconds to see
  * if the required duration is reached.
  */
 void	usleep_time(int sleep_duration)
@@ -91,7 +91,7 @@ void	usleep_time(int sleep_duration)
 		usleep(500);
 }
 
-int end_simulation(t_data *data)
+int	end_simulation(t_data *data)
 {
 	pthread_mutex_lock(&data->stop_lock);
 	if (data->stop_simulation)

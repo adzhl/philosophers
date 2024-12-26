@@ -9,9 +9,9 @@ $(addprefix src/, \
 	error.c \
 	check_args.c \
 	utils.c \
+	init.c \
 	monitor.c \
 	threads.c \
-	init.c \
 	routine.c \
 	forks.c) 
 

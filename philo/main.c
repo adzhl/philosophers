@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:56:11 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:33:18 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:02:48 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_data(&data, argc, argv))
 		return (1);
+	// check_initialization(&data);
 	create_threads(&data);
 	cleanup(&data);
 	return (0);

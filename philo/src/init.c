@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 10:25:30 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:42:04 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ int	init_forks(t_data *data)
 		return (0);
 	i = -1;
 	while (++i < data->no_of_philo)
-	{
-		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-			return (0);
-	}
+		pthread_mutex_init(&data->forks[i], NULL);
 	return (1);
 }
 
@@ -67,7 +64,7 @@ int	init_philo(t_data *data)
 	while (++i < data->no_of_philo)
 	{
 		assign_philo = &data->philo[i];
-		assign_philo->id = i;
+		assign_philo->id = i + 1;
 		assign_philo->last_meal_time = get_timestamp();
 		assign_philo->meals_eaten = 0;
 		assign_philo->left_fork = &data->forks[i];

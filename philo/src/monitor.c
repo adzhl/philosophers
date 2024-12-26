@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 13:49:24 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 16:08:17 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	*monitor_routine(void *arg)
 	int		i;
 
 	data = (t_data *)arg;
-	while (1)
+	while (!end_simulation(data))
 	{
-        if (end_simulation(data))
-            break;
         i = -1;
 		while (++i < data->no_of_philo)
 		{

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 10:30:45 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 15:53:29 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	create_threads(t_data *data)
 	int			i;
 	pthread_t	monitor_thread;
 
-	pthread_create(&monitor_thread, NULL, monitor_routine, data);
 	i = -1;
 	while (++i < data->no_of_philo)
 		pthread_create(&data->philo[i].thread, NULL, philo_routine,
 			&data->philo[i]);
-	pthread_join(monitor_thread, NULL);
+	pthread_create(&monitor_thread, NULL, monitor_routine, data);
 	i = -1;
 	while (++i < data->no_of_philo)
 		pthread_join(data->philo[i].thread, NULL);
+	pthread_join(monitor_thread, NULL);
 }
 
 void	cleanup(t_data *data)

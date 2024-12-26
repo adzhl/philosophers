@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:17:52 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:46:54 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	check_args(int argc, char **argv)
 		return (1);
 	if (!arg_is_valid(argv))
 		return (1);
-	printf("Here");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/25 17:55:51 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 09:44:53 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,16 @@ void	usleep_time(int sleep_duration)
 	start = get_timestamp();
 	while (get_timestamp() - start < sleep_duration)
 		usleep(500);
+}
+
+int end_simulation(t_data *data)
+{
+	pthread_mutex_lock(&data->stop_lock);
+	if (data->stop_simulation)
+	{
+		pthread_mutex_unlock(&data->stop_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(&data->stop_lock);
+	return (0);
 }

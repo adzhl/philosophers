@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 13:40:35 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:16:47 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,7 @@ void					*monitor_routine(void *arg);
 int						philo_death(t_data *data, int i);
 int						eaten_enough(t_data *data);
 void					stop_simulation(t_data *data);
-
-// forks
-
-void					take_fork(t_philo *philo);
-void					put_fork(t_philo *philo);
+int						end_simulation(t_data *data);
 
 // cleanup
 
@@ -121,13 +117,14 @@ void					cleanup(t_data *data);
 
 // utils
 
+void					log_activity(char *message, t_philo *philo);
+void					take_fork(t_philo *philo);
+void					put_fork(t_philo *philo);
+
 int						ft_isdigit(char *str);
 long					ft_atol(char *str);
-long					get_timestamp(void);
-void					log_activity(char *message, t_philo *philo);
-void					usleep_time(int sleep_duration);
-int						end_simulation(t_data *data);
-
 void					print_error(char *message);
+long					get_timestamp(void);
+void					usleep_time(int sleep_duration);
 
 #endif

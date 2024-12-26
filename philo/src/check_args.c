@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 09:50:50 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:19:51 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	arg_is_valid(char **argv)
 
 /**
  * 1. no_of_philo must be at least 1 and not more than MAX_PHILO
- * 2. time_to_die,
-	time_to_eat and time_to_sleep must not be lower than MIN_VALUE
+ * 2. time_to_die, time_to_eat and time_to_sleep must not be lower than MIN_VALUE
  * 3. no_of_times_each_philo_must_eat must be at least 1
  */
 int	valid_arg_value(int num, int i)

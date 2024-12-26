@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 13:28:23 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:16:31 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ long	ft_atol(char *str)
 	return (result * sign);
 }
 
+void	print_error(char *message)
+{
+	int	i;
+
+	i = 0;
+	while (message[i])
+		i++;
+	write(STDERR_FILENO, message, i);
+}
+
 /**
  * @note tv_sec contains whole seconds while
  * tv_usec tell the fraction of the second
@@ -61,25 +71,6 @@ long	get_timestamp(void)
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-/**
- * @brief Activity logging is a shared resource.
- * Therefore, it must be locked before using and unlocked after using
- */
-void	log_activity(char *message, t_philo *philo)
-{
-	long	timestamp;
-
-	pthread_mutex_lock(&philo->data->print_lock);
-	if (end_simulation(philo->data))
-	{
-		pthread_mutex_unlock(&philo->data->print_lock);
-		return ;
-	}
-	timestamp = get_timestamp() - philo->data->start_time;
-	printf("%ld %d %s\n\n", timestamp, philo->id, message);
-	pthread_mutex_unlock(&philo->data->print_lock);
 }
 
 /**
@@ -94,16 +85,4 @@ void	usleep_time(int sleep_duration)
 	start = get_timestamp();
 	while (get_timestamp() - start < sleep_duration)
 		usleep(500);
-}
-
-int	end_simulation(t_data *data)
-{
-	pthread_mutex_lock(&data->stop_lock);
-	if (data->stop_simulation)
-	{
-		pthread_mutex_unlock(&data->stop_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(&data->stop_lock);
-	return (0);
 }

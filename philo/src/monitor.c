@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 17:19:41 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:08:25 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,16 @@ void	stop_simulation(t_data *data)
 	pthread_mutex_lock(&data->stop_lock);
 	data->stop_simulation = 1;
 	pthread_mutex_unlock(&data->stop_lock);
+}
+
+int	end_simulation(t_data *data)
+{
+	pthread_mutex_lock(&data->stop_lock);
+	if (data->stop_simulation)
+	{
+		pthread_mutex_unlock(&data->stop_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(&data->stop_lock);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 16:05:29 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/26 16:45:10 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep_time(10);
 	while (!end_simulation(philo->data))
 	{
 		eating(philo);

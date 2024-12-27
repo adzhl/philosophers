@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 18:08:25 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:55:49 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,16 @@ int	eaten_enough(t_data *data)
 	if (data->must_eat_count == -1)
 		return (0);
 	i = -1;
-	not_hungry = 0;
+	not_hungry = 1;
 	while (++i < data->no_of_philo)
 	{
 		pthread_mutex_lock(&data->philo[i].meal_count_mutex);
-		if (data->philo[i].meals_eaten >= data->must_eat_count)
-			not_hungry++;
+		if (data->philo[i].meals_eaten < data->must_eat_count)
+			not_hungry = 0;
 		pthread_mutex_unlock(&data->philo[i].meal_count_mutex);
 	}
-	if (not_hungry == data->no_of_philo)
-	{
-		end_simulation(data);
+	if (not_hungry)
 		return (1);
-	}
 	return (0);
 }
 

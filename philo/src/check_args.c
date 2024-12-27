@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:56:06 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 18:19:51 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:39:57 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
  */
 int	check_args(int argc, char **argv)
 {
-	if (!valid_arg_count(argc))
+	if (!valid_count(argc))
 		return (1);
-	if (!arg_is_valid(argv))
+	if (!is_valid(argv))
 		return (1);
 	return (0);
 }
 
-int	valid_arg_count(int argc)
+int	valid_count(int argc)
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -40,7 +40,7 @@ int	valid_arg_count(int argc)
  * 2. Argument must be an integer
  * 3. Argument value must be valid (see valid_arg_value)
  */
-int	arg_is_valid(char **argv)
+int	is_valid(char **argv)
 {
 	int		i;
 	long	num;
@@ -48,7 +48,7 @@ int	arg_is_valid(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (!ft_isdigit(argv[i]))
+		if (!is_digit(argv[i]))
 		{
 			arg_error(i);
 			return (0);
@@ -59,7 +59,7 @@ int	arg_is_valid(char **argv)
 			arg_error(i);
 			return (0);
 		}
-		if (!valid_arg_value(num, i))
+		if (!valid_value(num, i))
 			return (0);
 		i++;
 	}
@@ -71,7 +71,7 @@ int	arg_is_valid(char **argv)
  * 2. time_to_die, time_to_eat and time_to_sleep must not be lower than MIN_VALUE
  * 3. no_of_times_each_philo_must_eat must be at least 1
  */
-int	valid_arg_value(int num, int i)
+int	valid_value(int num, int i)
 {
 	if (i == 1 && (num < 1 || num > MAX_PHILO))
 	{

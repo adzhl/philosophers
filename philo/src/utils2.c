@@ -6,13 +6,13 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 18:16:31 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:42:43 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdigit(char *str)
+int	is_digit(char *str)
 {
 	if (!str || !*str)
 		return (0);

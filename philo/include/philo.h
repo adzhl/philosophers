@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 19:21:45 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:39:58 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ typedef struct s_philo
 // check args
 
 int						check_args(int argc, char **argv);
-int						valid_arg_count(int argc);
-int						arg_is_valid(char **argv);
-int						valid_arg_value(int num, int i);
+int						valid_count(int argc);
+int						is_valid(char **argv);
+int						valid_value(int num, int i);
 void					arg_error(int i);
 
 // initialize data
@@ -119,7 +119,7 @@ void					log_activity(char *message, t_philo *philo);
 void					take_fork(t_philo *philo);
 void					put_fork(t_philo *philo);
 
-int						ft_isdigit(char *str);
+int						is_digit(char *str);
 long					ft_atol(char *str);
 void					print_error(char *message);
 long					get_timestamp(void);

@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 15:55:49 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:24:54 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 /**
  * @brief Simulation will stop when there is a philo death or

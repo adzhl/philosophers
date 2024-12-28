@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 15:53:29 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:25:06 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 /**
  * @brief pthread_create - creates threads

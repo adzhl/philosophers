@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/26 18:22:46 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:24:50 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 /**
  * @return 0 (valid args)

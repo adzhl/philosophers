@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 12:12:43 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:25:10 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../include/philo.h"
 
 /**
  * @brief Activity logging is a shared resource.

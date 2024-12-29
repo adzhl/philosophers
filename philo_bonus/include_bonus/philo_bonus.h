@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 15:48:31 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:35:50 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_philo
 	long				last_meal_time;
 	int					meals_eaten;
 	pid_t				pid;
+	sem_t				*meal_lock;
+	sem_t				*meal_count_lock;
 	t_data				*data;
 }						t_philo;
 

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 15:48:59 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:44:02 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	create_processes(t_data *data)
 	while (++i < data->no_of_philo)
 	{
 		data->philo[i].pid = fork();
-		if (data->philo[i].id == -1)
+		if (data->philo[i].pid == -1)
 		{
 			print_error("Fork failed");
 			exit(EXIT_FAILURE);
 		}
-		if (data->philo[i].id == 0)
+		if (data->philo[i].pid == 0)
 		{
 			philo_routine(&data->philo[i]);
 			exit(EXIT_SUCCESS);

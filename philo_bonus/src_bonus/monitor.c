@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 15:47:45 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:39:09 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	monitor_routine(t_data *data)
 			if (philo_death(data, i))
 			{
 				sem_wait(data->stop_simulation);
+				log_activity("died", &data->philo[i]);
 				stop_simulation(data);
 				return ;
 			}
@@ -45,15 +46,14 @@ int	philo_death(t_data *data, int i)
 {
 	long	current_time;
 	long	time_since_eaten;
+	int		is_dead;
 
+	sem_wait(data->philo[i].meal_lock);
 	current_time = get_timestamp();
 	time_since_eaten = current_time - data->philo[i].last_meal_time;
-	if (time_since_eaten >= data->time_to_die)
-	{
-		log_activity("died", &data->philo[i]);
-		return (1);
-	}
-	return (0);
+	is_dead = (time_since_eaten >= data->time_to_die);
+	sem_post(data->philo[i].meal_lock);
+	return (is_dead);
 }
 
 /**
@@ -69,8 +69,13 @@ int	eaten_enough(t_data *data)
 	i = -1;
 	while (++i < data->no_of_philo)
 	{
+		sem_wait(data->philo[i].meal_count_lock);
 		if (data->philo[i].meals_eaten < data->must_eat_count)
+		{
+			sem_post(data->philo[i].meal_count_lock);
 			return (0);
+		}
+		sem_post(data->philo[i].meal_count_lock);
 	}
 	return (1);
 }
@@ -82,4 +87,5 @@ void	stop_simulation(t_data *data)
 	i = -1;
 	while (++i < data->no_of_philo)
 		kill(data->philo[i].pid, SIGKILL);
+	sem_post(data->stop_simulation);
 }

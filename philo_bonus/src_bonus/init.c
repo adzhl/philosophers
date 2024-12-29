@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 14:57:48 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:36:57 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int init_semaphore(t_data *data)
 	sem_unlink("/print_lock");
 	sem_unlink("/stop_simulation");
 	data->forks = sem_open("/forks", O_CREAT, 0644, data->no_of_philo);
-	data->forks = sem_open("/print_lock", O_CREAT, 0644, 1);
-	data->forks = sem_open("/stop_simulation", O_CREAT, 0644, 1);
+	data->print_lock = sem_open("/print_lock", O_CREAT, 0644, 1);
+	data->stop_simulation = sem_open("/stop_simulation", O_CREAT, 0644, 1);
 	if (data->forks == SEM_FAILED || data->print_lock == SEM_FAILED || \
 		data->stop_simulation == SEM_FAILED)
 		return (0);
@@ -70,6 +70,12 @@ int	init_philo(t_data *data)
 		assign_philo->last_meal_time = get_timestamp();
 		assign_philo->meals_eaten = 0;
 		assign_philo->pid = 0;
+		sem_unlink("/meal_lock");
+		sem_unlink("/meal_count_lock");
+		assign_philo->meal_lock = sem_open("/meal_lock", O_CREAT, 0644, 1);
+		assign_philo->meal_count_lock = sem_open("/meal_count_lock", O_CREAT, 0644, 1);
+		if (assign_philo->meal_lock == SEM_FAILED || assign_philo->meal_count_lock == SEM_FAILED)
+            return (0);
 		assign_philo->data = data;
 	}
 	return (1);

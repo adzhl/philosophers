@@ -1,7 +1,7 @@
 NAME = philo_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./include_bonus
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 
 MAIN = main.c
 SRCS = \

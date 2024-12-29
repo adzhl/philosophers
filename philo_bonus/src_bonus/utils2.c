@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 14:34:05 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 14:56:04 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:38 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "../include_bonus/philo_bonus.h"
 
 int	is_digit(char *str)
 {

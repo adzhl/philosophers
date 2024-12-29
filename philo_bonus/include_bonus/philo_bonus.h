@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 16:28:08 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 14:49:46 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	pid_t				pid;
 	int					id;
 	long				last_meal_time;
 	int					meals_eaten;
+	pid_t				pid;
 	t_data				*data;
 }						t_philo;
 
@@ -84,7 +84,7 @@ void					arg_error(int i);
 // initialize data
 
 int						init_data(t_data *data, int argc, char **argv);
-int						init_forks(t_data *data);
+int						init_semaphore(t_data *data);
 int						init_philo(t_data *data);
 
 // thread creation

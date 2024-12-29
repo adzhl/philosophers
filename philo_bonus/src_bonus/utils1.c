@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 14:55:58 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:35 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "../include_bonus/philo_bonus.h"
 
 /**
  * @brief Activity logging is a shared resource.

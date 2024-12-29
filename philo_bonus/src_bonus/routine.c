@@ -6,11 +6,11 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 14:55:49 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:27:22 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "../include_bonus/philo_bonus.h"
 
 /**
  * @brief (void *arg) is passed as the parameter and typecasted in the

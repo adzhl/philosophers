@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/28 23:27:35 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:18:25 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,23 @@ void	log_activity(char *message, t_philo *philo)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(&philo->data->print_lock);
-	if (end_simulation(philo->data))
-	{
-		pthread_mutex_unlock(&philo->data->print_lock);
-		return ;
-	}
+	sem_wait(philo->data->print_lock);
 	timestamp = get_timestamp() - philo->data->start_time;
 	printf("%ld %d %s\n", timestamp, philo->id, message);
-	pthread_mutex_unlock(&philo->data->print_lock);
+	if (ft_strcmp(message, "died") != 0)
+		sem_post(philo->data->print_lock);
 }
 
-void	take_fork(t_philo *philo)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	pthread_mutex_lock(philo->left_fork);
-	log_activity("has taken a fork", philo);
-	pthread_mutex_lock(philo->right_fork);
-	log_activity("has taken a fork", philo);
-}
-
-void	put_fork(t_philo *philo)
-{
-	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);
+	if (!s1 || !s2)
+		return (0);
+	while (*s1 || *s2)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		s1++;
+		s2++;
+	}
+	return (0);
 }

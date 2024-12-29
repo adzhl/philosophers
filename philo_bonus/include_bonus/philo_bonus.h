@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 14:49:46 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:48:31 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <semaphore.h>
 // For INT_MAX and INT_MIN
 # include <limits.h>
+// For kill
+# include <signal.h>
 
 # define MAX_PHILO 200
 # define MIN_VALUE 60
@@ -59,8 +61,8 @@ typedef struct s_data
 	int					must_eat_count;
 	long				start_time;
 	sem_t				*forks;
-	sem_t				print_lock;
-	sem_t				stop_simulation;
+	sem_t				*print_lock;
+	sem_t				*stop_simulation;
 	t_philo				*philo;
 }						t_data;
 
@@ -89,22 +91,21 @@ int						init_philo(t_data *data);
 
 // thread creation
 
-void					create_threads(t_data *data);
+void					create_processes(t_data *data);
 
 // routine
 
-void					*philo_routine(void *arg);
+void					philo_routine(t_philo *philo);
 void					eating(t_philo *philo);
 void					sleeping(t_philo *philo);
 void					thinking(t_philo *philo);
 
 // monitoring
 
-void					*monitor_routine(void *arg);
+void					monitor_routine(t_data *data);
 int						philo_death(t_data *data, int i);
 int						eaten_enough(t_data *data);
 void					stop_simulation(t_data *data);
-int						end_simulation(t_data *data);
 
 // cleanup
 
@@ -113,8 +114,7 @@ void					cleanup(t_data *data);
 // utils
 
 void					log_activity(char *message, t_philo *philo);
-void					take_fork(t_philo *philo);
-void					put_fork(t_philo *philo);
+int						ft_strcmp(const char *s1, const char *s2);
 
 int						is_digit(char *str);
 long					ft_atol(char *str);

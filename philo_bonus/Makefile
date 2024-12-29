@@ -10,7 +10,7 @@ $(addprefix src_bonus/, \
 	init.c \
 	monitor.c \
 	routine.c \
-	threads.c \
+	processes.c \
 	utils1.c \
 	utils2.c) 
 

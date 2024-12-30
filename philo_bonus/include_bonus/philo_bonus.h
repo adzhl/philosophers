@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 18:29:35 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:58:14 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,14 @@ void					stop_simulation(t_data *data);
 
 // cleanup
 
-void					fork_error(t_data *data);
 void					cleanup(t_data *data);
 
 // utils
 
 void					log_activity(char *message, t_philo *philo);
 int						ft_strcmp(const char *s1, const char *s2);
+void					fork_error(t_data *data);
+void					handle_single_philo(t_philo *philo);
 
 int						is_digit(char *str);
 long					ft_atol(char *str);

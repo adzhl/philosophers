@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 18:32:33 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:57:46 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ void	fork_error(t_data *data)
 	print_error("Fork failed");
 	cleanup(data);
 	exit(EXIT_FAILURE);
+}
+
+void	handle_single_philo(t_philo *philo)
+{
+	sem_wait(philo->sem->forks);
+	log_activity("has taken a fork", philo);
+	usleep_time(philo->data->time_to_die);
+	sem_post(philo->sem->forks);
+	log_activity("died", philo);
+	exit(0);
 }
 
 void	cleanup(t_data *data)

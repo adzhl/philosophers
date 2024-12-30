@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 18:06:46 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 21:01:25 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ void	philo_routine(t_philo *philo)
 
 	philo->last_meal_time = get_timestamp();
 	if (philo->data->no_of_philo == 1)
-	{
-		usleep_time(philo->data->time_to_die);
-		log_activity("died", philo);
-		exit(0);
-	}
+		handle_single_philo(philo);
 	pthread_create(&death_checker, NULL, philo_death, philo);
 	pthread_detach(death_checker);
 	while (1)

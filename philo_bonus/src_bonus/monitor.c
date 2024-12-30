@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 17:39:09 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:36:44 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
  */
 void	monitor_routine(t_data *data)
 {
-	int		i;
-	int		status;
+	int	i;
+	int	status;
 
 	while (1)
 	{
@@ -82,7 +82,7 @@ int	eaten_enough(t_data *data)
 
 void	stop_simulation(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < data->no_of_philo)

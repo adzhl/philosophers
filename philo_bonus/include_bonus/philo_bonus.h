@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 17:35:50 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:32:43 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # include <limits.h>
 // For kill
 # include <signal.h>
+// For O_CREAT
+# include <fcntl.h>
 
 # define MAX_PHILO 200
 # define MIN_VALUE 60

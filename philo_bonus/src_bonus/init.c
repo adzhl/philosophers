@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 17:36:57 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 08:36:53 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	init_data(t_data *data, int argc, char **argv)
  * 1. Naming convention of semaphores starts with '/'
  * 2. sem_unlink() is called before initializing to remove semaphore with
  *    the same name from the system
- * 3. Semaphores are created as objects in the kernel that appear in the 
+ * 3. Semaphores are created as objects in the kernel that appear in the
  *    filesystem and exist in the system's shared memory space
  * 4. Permissions determine which processes can access the semaphore
  */
-int init_semaphore(t_data *data)
+int	init_semaphore(t_data *data)
 {
 	sem_unlink("/forks");
 	sem_unlink("/print_lock");
@@ -48,8 +48,8 @@ int init_semaphore(t_data *data)
 	data->forks = sem_open("/forks", O_CREAT, 0644, data->no_of_philo);
 	data->print_lock = sem_open("/print_lock", O_CREAT, 0644, 1);
 	data->stop_simulation = sem_open("/stop_simulation", O_CREAT, 0644, 1);
-	if (data->forks == SEM_FAILED || data->print_lock == SEM_FAILED || \
-		data->stop_simulation == SEM_FAILED)
+	if (data->forks == SEM_FAILED || data->print_lock == SEM_FAILED
+		|| data->stop_simulation == SEM_FAILED)
 		return (0);
 	return (1);
 }
@@ -73,9 +73,11 @@ int	init_philo(t_data *data)
 		sem_unlink("/meal_lock");
 		sem_unlink("/meal_count_lock");
 		assign_philo->meal_lock = sem_open("/meal_lock", O_CREAT, 0644, 1);
-		assign_philo->meal_count_lock = sem_open("/meal_count_lock", O_CREAT, 0644, 1);
-		if (assign_philo->meal_lock == SEM_FAILED || assign_philo->meal_count_lock == SEM_FAILED)
-            return (0);
+		assign_philo->meal_count_lock = sem_open("/meal_count_lock", O_CREAT,
+				0644, 1);
+		if (assign_philo->meal_lock == SEM_FAILED
+			|| assign_philo->meal_count_lock == SEM_FAILED)
+			return (0);
 		assign_philo->data = data;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 14:59:09 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:47:15 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_sem
 	sem_t				*stop_simulation;
 	sem_t				*meal_lock;
 	sem_t				*meal_count_lock;
+	sem_t				*pid_lock;
 }						t_sem;
 
 typedef struct s_data

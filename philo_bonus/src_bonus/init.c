@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:21:36 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:48:04 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	init_semaphore(t_data *data, int philo_count)
 	sem_unlink("/stop_simulation");
 	sem_unlink("/meal_lock");
 	sem_unlink("/meal_count_lock");
+	sem_unlink("/pid_lock");
 	data->sem->forks = sem_open("/forks", O_CREAT | O_EXCL, 0644, philo_count);
 	data->sem->print_lock = sem_open("/print_lock", O_CREAT | O_EXCL, 0644, 1);
 	data->sem->stop_simulation = sem_open("/stop_simulation", O_CREAT | O_EXCL,
@@ -56,10 +57,12 @@ int	init_semaphore(t_data *data, int philo_count)
 	data->sem->meal_lock = sem_open("/meal_lock", O_CREAT | O_EXCL, 0644, 1);
 	data->sem->meal_count_lock = sem_open("/meal_count_lock", O_CREAT | O_EXCL,
 			0644, 1);
+	data->sem->pid_lock = sem_open("/pid_lock", O_CREAT | O_EXCL, 0644, 1);
 	if (data->sem->forks == SEM_FAILED || data->sem->print_lock == SEM_FAILED
 		|| data->sem->stop_simulation == SEM_FAILED
 		|| data->sem->meal_lock == SEM_FAILED
-		|| data->sem->meal_count_lock == SEM_FAILED)
+		|| data->sem->meal_count_lock == SEM_FAILED
+		|| data->sem->pid_lock == SEM_FAILED)
 		return (0);
 	return (1);
 }

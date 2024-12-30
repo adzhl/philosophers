@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:21:11 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:00:57 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	create_processes(t_data *data)
 	int			i;
 	pthread_t	must_eat_thread;
 
+	sem_wait(data->sem->pid_lock);
 	if (data->must_eat_count != -1)
 	{
 		pthread_create(&must_eat_thread, NULL, eaten_enough, data);
@@ -29,11 +30,13 @@ void	create_processes(t_data *data)
 		if (data->philo[i].pid == -1)
 		{
 			print_error("Fork failed");
+			cleanup(data);
 			exit(EXIT_FAILURE);
 		}
 		if (data->philo[i].pid == 0)
 			philo_routine(&data->philo[i]);
 	}
+	sem_post(data->sem->pid_lock);
 	waitpid(-1, NULL, 0);
 }
 
@@ -44,6 +47,7 @@ void	cleanup(t_data *data)
 	sem_close(data->sem->stop_simulation);
 	sem_close(data->sem->meal_lock);
 	sem_close(data->sem->meal_count_lock);
+	sem_close(data->sem->pid_lock);
 	free(data->sem);
 	free(data->philo);
 }

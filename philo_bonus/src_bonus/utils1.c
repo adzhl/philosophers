@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/29 15:18:25 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:36:48 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	log_activity(char *message, t_philo *philo)
 {
 	long	timestamp;
 
-	sem_wait(philo->data->print_lock);
+	sem_wait(philo->sem->print_lock);
 	timestamp = get_timestamp() - philo->data->start_time;
 	printf("%ld %d %s\n", timestamp, philo->id, message);
 	if (ft_strcmp(message, "died") != 0)
-		sem_post(philo->data->print_lock);
+		sem_post(philo->sem->print_lock);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

@@ -1,7 +1,7 @@
 NAME = philo_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g
 
 MAIN = main.c
 SRCS = \
@@ -20,7 +20,7 @@ OBJS = $(SRCS:src_bonus/%.c=$(OBJ_DIR)/%.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MAIN) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJS) $(MAIN) -o $(NAME) -lpthread
 
 $(OBJ_DIR)/%.o: src_bonus/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ 

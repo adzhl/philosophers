@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 08:39:28 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 09:40:56 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,15 @@ integer\n"
 
 typedef struct s_philo	t_philo;
 
+typedef struct s_sem
+{
+	sem_t				*forks;
+	sem_t				*print_lock;
+	sem_t				*stop_simulation;
+	sem_t				*meal_lock;
+	sem_t				*meal_count_lock;
+}						t_sem;
+
 typedef struct s_data
 {
 	int					no_of_philo;
@@ -64,9 +73,7 @@ typedef struct s_data
 	int					time_to_sleep;
 	int					must_eat_count;
 	long				start_time;
-	sem_t				*forks;
-	sem_t				*print_lock;
-	sem_t				*stop_simulation;
+	t_sem				*sem;
 	t_philo				*philo;
 }						t_data;
 
@@ -76,8 +83,7 @@ typedef struct s_philo
 	long				last_meal_time;
 	int					meals_eaten;
 	pid_t				pid;
-	sem_t				*meal_lock;
-	sem_t				*meal_count_lock;
+	t_sem				*sem;
 	t_data				*data;
 }						t_philo;
 
@@ -92,7 +98,7 @@ void					arg_error(int i);
 // initialize data
 
 int						init_data(t_data *data, int argc, char **argv);
-int						init_semaphore(t_data *data);
+int						init_semaphore(t_data *data, int philo_count);
 int						init_philo(t_data *data);
 
 // thread creation

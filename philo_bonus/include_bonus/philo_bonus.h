@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:47:15 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:29:35 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					must_eat_count;
+	long				start_time;
 	t_sem				*sem;
 	t_philo				*philo;
 }						t_data;
@@ -121,6 +122,7 @@ void					stop_simulation(t_data *data);
 
 // cleanup
 
+void					fork_error(t_data *data);
 void					cleanup(t_data *data);
 
 // utils

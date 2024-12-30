@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 16:27:56 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:29:42 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,28 @@ void	create_processes(t_data *data)
 		pthread_create(&must_eat_thread, NULL, eaten_enough, data);
 		pthread_detach(must_eat_thread);
 	}
+	data->start_time = get_timestamp();
 	i = -1;
 	while (++i < data->no_of_philo)
 	{
 		data->philo[i].pid = fork();
 		if (data->philo[i].pid == -1)
-		{
-			print_error("Fork failed");
-			cleanup(data);
-			exit(EXIT_FAILURE);
-		}
+			fork_error(data);
 		if (data->philo[i].pid == 0)
+		{
+			data->philo[i].creation_time = data->start_time;
 			philo_routine(&data->philo[i]);
+		}
 	}
 	sem_post(data->sem->pid_lock);
 	waitpid(-1, NULL, 0);
+}
+
+void	fork_error(t_data *data)
+{
+	print_error("Fork failed");
+	cleanup(data);
+	exit(EXIT_FAILURE);
 }
 
 void	cleanup(t_data *data)

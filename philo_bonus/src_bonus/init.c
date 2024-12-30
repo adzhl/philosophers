@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:48:04 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:26:21 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = ft_atol(argv[5]);
 	else
 		data->must_eat_count = -1;
+	data->start_time = 0;
 	data->sem = malloc(sizeof(t_sem));
 	if (!data->sem)
 		return (1);

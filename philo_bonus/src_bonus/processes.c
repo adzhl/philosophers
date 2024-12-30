@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 16:00:57 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:27:56 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void	cleanup(t_data *data)
 	sem_close(data->sem->meal_lock);
 	sem_close(data->sem->meal_count_lock);
 	sem_close(data->sem->pid_lock);
+	sem_unlink("/forks");
+	sem_unlink("/print_lock");
+	sem_unlink("/stop_simulation");
+	sem_unlink("/meal_lock");
+	sem_unlink("/meal_count_lock");
+	sem_unlink("/pid_lock");
 	free(data->sem);
 	free(data->philo);
 }

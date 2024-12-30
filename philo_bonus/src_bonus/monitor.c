@@ -6,17 +6,17 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:16:05 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:21:28 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include_bonus/philo_bonus.h"
 
-void *eaten_enough(void *arg)
+void	*eaten_enough(void *arg)
 {
 	t_data	*data;
-	int eaten;
-	
+	int		eaten;
+
 	data = (t_data *)arg;
 	eaten = 0;
 	while (1)
@@ -25,39 +25,39 @@ void *eaten_enough(void *arg)
 		eaten++;
 		if (eaten >= data->no_of_philo)
 		{
-			//sem_wait(data->sem->stop_simulation);
+			// sem_wait(data->sem->stop_simulation);
 			stop_simulation(data);
-			//sem_post(data->sem->stop_simulation);
+			// sem_post(data->sem->stop_simulation);
 			exit(EXIT_SUCCESS);
 		}
-		//sem_post(data->sem->meal_count_lock);
+		// sem_post(data->sem->meal_count_lock);
 	}
 	return (NULL);
 }
 
-void *philo_death(void *ptr)
+void	*philo_death(void *ptr)
 {
-    t_philo *philo;
-	long current_time;
-	long last_meal;
+	t_philo	*philo;
+	long	current_time;
+	long	last_meal;
 
-    philo = (t_philo *)ptr;
-    while (1)
-    {
+	philo = (t_philo *)ptr;
+	while (1)
+	{
 		sem_wait(philo->sem->meal_lock);
 		current_time = get_timestamp();
 		last_meal = philo->last_meal_time;
 		sem_post(philo->sem->meal_lock);
-        sem_wait(philo->sem->stop_simulation);
-        if (current_time - last_meal > philo->data->time_to_die)
-        {
-            log_activity("died", philo);
-            sem_post(philo->sem->meal_lock);
-            exit(EXIT_SUCCESS);
-        }
-        sem_post(philo->sem->stop_simulation);
-    }
-    return (NULL);
+		sem_wait(philo->sem->stop_simulation);
+		if (current_time - last_meal > philo->data->time_to_die)
+		{
+			log_activity("died", philo);
+			sem_post(philo->sem->meal_lock);
+			exit(EXIT_SUCCESS);
+		}
+		sem_post(philo->sem->stop_simulation);
+	}
+	return (NULL);
 }
 
 void	stop_simulation(t_data *data)
@@ -65,7 +65,7 @@ void	stop_simulation(t_data *data)
 	int	i;
 
 	i = -1;
-	//sem_wait(data->sem->stop_simulation);
+	// sem_wait(data->sem->stop_simulation);
 	while (++i < data->no_of_philo)
 		kill(data->philo[i].pid, SIGKILL);
 	sem_post(data->sem->stop_simulation);

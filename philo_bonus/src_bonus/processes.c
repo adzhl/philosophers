@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 15:15:38 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:21:11 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	create_processes(t_data *data)
 {
-	int	i;
-	pthread_t must_eat_thread;
+	int			i;
+	pthread_t	must_eat_thread;
 
 	if (data->must_eat_count != -1)
 	{
@@ -44,5 +44,6 @@ void	cleanup(t_data *data)
 	sem_close(data->sem->stop_simulation);
 	sem_close(data->sem->meal_lock);
 	sem_close(data->sem->meal_count_lock);
+	free(data->sem);
 	free(data->philo);
 }

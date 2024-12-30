@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 09:40:56 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:59:09 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					must_eat_count;
-	long				start_time;
 	t_sem				*sem;
 	t_philo				*philo;
 }						t_data;
@@ -81,6 +80,7 @@ typedef struct s_philo
 {
 	int					id;
 	long				last_meal_time;
+	long				creation_time;
 	int					meals_eaten;
 	pid_t				pid;
 	t_sem				*sem;
@@ -114,9 +114,8 @@ void					thinking(t_philo *philo);
 
 // monitoring
 
-void					monitor_routine(t_data *data);
-int						philo_death(t_data *data, int i);
-int						eaten_enough(t_data *data);
+void					*eaten_enough(void *arg);
+void					*philo_death(void *ptr);
 void					stop_simulation(t_data *data);
 
 // cleanup

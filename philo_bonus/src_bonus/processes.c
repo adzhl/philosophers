@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 09:28:05 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:15:38 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 void	create_processes(t_data *data)
 {
 	int	i;
+	pthread_t must_eat_thread;
 
+	if (data->must_eat_count != -1)
+	{
+		pthread_create(&must_eat_thread, NULL, eaten_enough, data);
+		pthread_detach(must_eat_thread);
+	}
 	i = -1;
 	while (++i < data->no_of_philo)
 	{
@@ -26,12 +32,9 @@ void	create_processes(t_data *data)
 			exit(EXIT_FAILURE);
 		}
 		if (data->philo[i].pid == 0)
-		{
 			philo_routine(&data->philo[i]);
-			exit(EXIT_SUCCESS);
-		}
 	}
-	monitor_routine(data);
+	waitpid(-1, NULL, 0);
 }
 
 void	cleanup(t_data *data)

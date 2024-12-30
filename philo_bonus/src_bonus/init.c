@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:09:44 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 09:42:49 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:56:08 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = ft_atol(argv[5]);
 	else
 		data->must_eat_count = -1;
-	data->start_time = get_timestamp();
+	//data->start_time = get_timestamp();
 	data->sem = malloc(sizeof(t_sem));
 	if (!data->sem)
 		return (1);
@@ -77,7 +77,7 @@ int	init_philo(t_data *data)
 	{
 		assign_philo = &data->philo[i];
 		assign_philo->id = i + 1;
-		assign_philo->last_meal_time = get_timestamp();
+		//assign_philo->last_meal_time = get_timestamp();
 		assign_philo->meals_eaten = 0;
 		assign_philo->pid = 0;
 		assign_philo->sem = data->sem;

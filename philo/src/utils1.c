@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/28 23:25:10 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:52:28 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,13 @@ void	take_fork(t_philo *philo)
 void	put_fork(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(philo->left_fork);
+}
+
+void	handle_single_philo(t_philo *philo)
+{
+	pthread_mutex_lock(philo->left_fork);
+	log_activity("has taken a fork", philo);
+	usleep_time(philo->data->time_to_die);
 	pthread_mutex_unlock(philo->left_fork);
 }

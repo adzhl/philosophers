@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:58:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/27 10:39:58 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:52:49 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void					cleanup(t_data *data);
 void					log_activity(char *message, t_philo *philo);
 void					take_fork(t_philo *philo);
 void					put_fork(t_philo *philo);
+void					handle_single_philo(t_philo *philo);
 
 int						is_digit(char *str);
 long					ft_atol(char *str);

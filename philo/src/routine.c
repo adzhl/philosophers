@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/28 23:25:02 by abinti-a         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:53:08 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	eating(t_philo *philo)
 {
 	if (philo->data->no_of_philo == 1)
 	{
-		usleep_time(philo->data->time_to_die);
+		handle_single_philo(philo);
 		return ;
 	}
 	take_fork(philo);

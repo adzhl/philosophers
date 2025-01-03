@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 18:04:12 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:10:47 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	fork_error()
+void	fork_error(void)
 {
 	print_error("Fork failed");
 	exit(EXIT_FAILURE);

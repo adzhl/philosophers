@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 19:57:46 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:38:44 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,26 @@ void	handle_single_philo(t_philo *philo)
 
 void	cleanup(t_data *data)
 {
-	sem_close(data->sem->forks);
-	sem_close(data->sem->print_lock);
-	sem_close(data->sem->stop_simulation);
-	sem_close(data->sem->meal_lock);
-	sem_close(data->sem->meal_count_lock);
-	sem_close(data->sem->pid_lock);
+	if (data->sem->forks)
+		sem_close(data->sem->forks);
+	if (data->sem->print_lock)
+		sem_close(data->sem->print_lock);
+	if (data->sem->stop_simulation)
+		sem_close(data->sem->stop_simulation);
+	if (data->sem->meal_lock)
+		sem_close(data->sem->meal_lock);
+	if (data->sem->meal_count_lock)
+		sem_close(data->sem->meal_count_lock);
+	if (data->sem->pid_lock)
+		sem_close(data->sem->pid_lock);
 	sem_unlink("/forks");
 	sem_unlink("/print_lock");
 	sem_unlink("/stop_simulation");
 	sem_unlink("/meal_lock");
 	sem_unlink("/meal_count_lock");
 	sem_unlink("/pid_lock");
-	free(data->sem);
-	free(data->philo);
+	if (data->sem)
+		free(data->sem);
+	if (data->philo)
+		free(data->philo);
 }

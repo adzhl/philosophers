@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 16:33:27 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:45:35 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	*eaten_enough(void *arg)
 		{
 			sem_wait(data->sem->stop_simulation);
 			stop_simulation(data);
-			sem_post(data->sem->stop_simulation);
 			cleanup(data);
 			exit(EXIT_SUCCESS);
 		}

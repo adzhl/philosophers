@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 17:20:38 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:04:12 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	fork_error(t_data *data)
+void	fork_error()
 {
 	print_error("Fork failed");
-	cleanup(data);
 	exit(EXIT_FAILURE);
 }
 
@@ -60,17 +59,17 @@ void	handle_single_philo(t_philo *philo)
 
 void	cleanup(t_data *data)
 {
-	if (data->sem->forks != SEM_FAILED)
+	if (data->sem->forks)
 		sem_close(data->sem->forks);
-	if (data->sem->print_lock != SEM_FAILED)
+	if (data->sem->print_lock)
 		sem_close(data->sem->print_lock);
-	if (data->sem->stop_simulation != SEM_FAILED)
+	if (data->sem->stop_simulation)
 		sem_close(data->sem->stop_simulation);
-	if (data->sem->eating_lock != SEM_FAILED)
+	if (data->sem->eating_lock)
 		sem_close(data->sem->eating_lock);
-	if (data->sem->meal_count_lock != SEM_FAILED)
+	if (data->sem->meal_count_lock)
 		sem_close(data->sem->meal_count_lock);
-	if (data->sem->pid_lock != SEM_FAILED)
+	if (data->sem->pid_lock)
 		sem_close(data->sem->pid_lock);
 	sem_unlink("/forks");
 	sem_unlink("/print_lock");

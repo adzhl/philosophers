@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 17:28:56 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:35:17 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	*philo_death(void *ptr)
 		{
 			log_activity("died", philo);
 			sem_post(philo->sem->eating_lock);
-			sem_close(philo->sem->stop_simulation);
 			exit(EXIT_SUCCESS);
 		}
 		sem_post(philo->sem->stop_simulation);

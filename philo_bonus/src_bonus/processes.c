@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 14:23:58 by abinti-a          #+#    #+#             */
-/*   Updated: 2024/12/30 18:33:13 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:04:16 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	create_processes(t_data *data)
 	{
 		data->philo[i].pid = fork();
 		if (data->philo[i].pid == -1)
-			fork_error(data);
+			fork_error();
 		if (data->philo[i].pid == 0)
 		{
 			data->philo[i].creation_time = data->start_time;

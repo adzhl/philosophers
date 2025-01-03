@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 18:03:17 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 16:45:35 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:28:56 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void	*philo_death(void *ptr)
 	philo = (t_philo *)ptr;
 	while (1)
 	{
-		sem_wait(philo->sem->meal_lock);
+		sem_wait(philo->sem->eating_lock);
 		current_time = get_timestamp();
 		last_meal = philo->last_meal_time;
-		sem_post(philo->sem->meal_lock);
+		sem_post(philo->sem->eating_lock);
 		sem_wait(philo->sem->stop_simulation);
 		if (current_time - last_meal > philo->data->time_to_die)
 		{
 			log_activity("died", philo);
-			sem_post(philo->sem->meal_lock);
-			cleanup(philo->data);
+			sem_post(philo->sem->eating_lock);
+			sem_close(philo->sem->stop_simulation);
 			exit(EXIT_SUCCESS);
 		}
 		sem_post(philo->sem->stop_simulation);

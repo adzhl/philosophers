@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 13:27:39 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 16:38:44 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:20:38 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,22 @@ void	handle_single_philo(t_philo *philo)
 
 void	cleanup(t_data *data)
 {
-	if (data->sem->forks)
+	if (data->sem->forks != SEM_FAILED)
 		sem_close(data->sem->forks);
-	if (data->sem->print_lock)
+	if (data->sem->print_lock != SEM_FAILED)
 		sem_close(data->sem->print_lock);
-	if (data->sem->stop_simulation)
+	if (data->sem->stop_simulation != SEM_FAILED)
 		sem_close(data->sem->stop_simulation);
-	if (data->sem->meal_lock)
-		sem_close(data->sem->meal_lock);
-	if (data->sem->meal_count_lock)
+	if (data->sem->eating_lock != SEM_FAILED)
+		sem_close(data->sem->eating_lock);
+	if (data->sem->meal_count_lock != SEM_FAILED)
 		sem_close(data->sem->meal_count_lock);
-	if (data->sem->pid_lock)
+	if (data->sem->pid_lock != SEM_FAILED)
 		sem_close(data->sem->pid_lock);
 	sem_unlink("/forks");
 	sem_unlink("/print_lock");
 	sem_unlink("/stop_simulation");
-	sem_unlink("/meal_lock");
+	sem_unlink("/eating_lock");
 	sem_unlink("/meal_count_lock");
 	sem_unlink("/pid_lock");
 	if (data->sem)

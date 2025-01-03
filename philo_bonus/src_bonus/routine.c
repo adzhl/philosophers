@@ -6,7 +6,7 @@
 /*   By: abinti-a <abinti-a@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:00:50 by abinti-a          #+#    #+#             */
-/*   Updated: 2025/01/03 16:26:33 by abinti-a         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:03:28 by abinti-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	eating(t_philo *philo)
 	log_activity("has taken a fork", philo);
 	sem_wait(philo->sem->forks);
 	log_activity("has taken a fork", philo);
-	sem_wait(philo->sem->meal_lock);
+	sem_wait(philo->sem->eating_lock);
 	log_activity("is eating", philo);
 	philo->last_meal_time = get_timestamp();
 	philo->meals_eaten++;
-	sem_post(philo->sem->meal_lock);
+	sem_post(philo->sem->eating_lock);
 	if (philo->meals_eaten >= philo->data->must_eat_count)
 		sem_post(philo->sem->meal_count_lock);
 	usleep_time(philo->data->time_to_eat);

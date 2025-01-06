@@ -11,7 +11,6 @@ A simulation of the famous Dining Philosophers Problem using POSIX threads and s
 - [Setup](#setup)
 - [Usage](#usage)
 - [How It Works](#how-it-works)
-- [License](#license)
 
 ---
 
@@ -113,11 +112,4 @@ This command simulates 5 philosophers, each with the following parameters:
 | Simulation ends   |
 +-------------------+
 ```
-
----
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 

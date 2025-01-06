@@ -48,11 +48,11 @@ The Dining Philosophers Problem is a classic concurrency problem that illustrate
 
    - Mandatory
    ```bash
-   cd philo
+   cd philosophers/philo
    ```
    - Bonus
    ```bash
-   cd philo_bonus
+   cd philosophers/philo_bonus
    ```
 
 3. Compile the project:

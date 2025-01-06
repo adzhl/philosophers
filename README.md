@@ -4,16 +4,6 @@ A simulation of the famous Dining Philosophers Problem using POSIX threads and s
 
 ---
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Setup](#setup)
-- [Usage](#usage)
-- [How It Works](#how-it-works)
-
----
-
 ## Introduction
 
 The Dining Philosophers Problem is a classic concurrency problem that illustrates the challenges of process synchronization. Five philosophers sit at a round table, alternating between eating and thinking. They share a limited number of resources (forks) and must coordinate to avoid deadlocks and resource starvation. This project implements a solution to the problem using multithreading and semaphores.
@@ -78,6 +68,7 @@ This command simulates 5 philosophers, each with the following parameters:
 - **Time to die**: 800 milliseconds
 - **Time to eat**: 200 milliseconds
 - **Time to sleep**: 200 milliseconds
+- **Number of times each philosopher must eat**: 7 times
 
 ---
 
@@ -89,27 +80,4 @@ This command simulates 5 philosophers, each with the following parameters:
 - **Semaphores**: Used to manage access to shared resources (forks).
 - **Synchronization**: Ensures that no two philosophers can use the same fork simultaneously.
 - **Deadlock Prevention**: Implements strategies to avoid circular wait conditions.
-
-### Flowchart
-```
-+-------------------+
-| Initialize setup  |
-+-------------------+
-          |
-          v
-+-------------------+
-| Start simulation  |
-+-------------------+
-          |
-          v
-+-------------------+
-| Philosophers      |
-| eat, think, wait  |
-+-------------------+
-          |
-          v
-+-------------------+
-| Simulation ends   |
-+-------------------+
-```
 
